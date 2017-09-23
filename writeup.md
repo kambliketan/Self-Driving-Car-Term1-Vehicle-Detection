@@ -22,9 +22,7 @@ The goals / steps of this project are the following:
 [image5]: ./output_images/spatial_binning_output.PNG "Spatially Binned Image"
 [image6]: ./output_images/hog_visualization.PNG "Hog Visualizations and Feature vectors"
 [image7]: ./output_images/search_windows_and_roi.PNG "Search Windows and Region of Interest"
-[image8]: ./output_images/pipeline_sample_images.PNG "Pipeline on Sample Images"
-[image9]: ./output_images/pipeline_sample_images.PNG "Pipeline on Sample Images"
-[image10]: ./output_images/pipeline_sample_images.PNG "Pipeline on Sample Images"
+[image8]: ./output_images/pipeline.PNG "Pipeline on Sample Images"
 [video1]: ./output_project_video.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -73,9 +71,7 @@ After above experimentation, in code cell 13, I provide `get_dataset_hog_feature
 
 In code cell 11 and 13 I provide `get_dataset_features` and `get_dataset_hog_features` functions to experiment with color and hog features individually respectively. In code cell 12 I provide `train_test_classifier` function to conveniently train and test the classifier using different features. With color features I could only get upto ~92% accuracy but with Hog features I could get upto ~99% accuracy.
 
-In code cell 16 I used the `extract_features` function to combine color features with hog features. In code cell 17 I used that function to extract all features and later in code cell 20 I trained the Linear SVM classifier on these extrancted features to get 99.3% accuracy on the test dataset. Here's an image showing some stats about the classifier such as the number of fetures used for training vs testing and the output accuracy:
-
-![alt text][image10]
+In code cell 16 I used the `extract_features` function to combine color features with hog features. In code cell 17 I used that function to extract all features and later in code cell 20 I trained the Linear SVM classifier on these extrancted features to get 99.3% accuracy on the test dataset.
 
 ###Sliding Window Search
 
@@ -104,10 +100,6 @@ Here's a [link to my video result](./output_project_video.mp4)
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video and combined it with 10 past frames to remove false positives.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
-
-Here's an example result showing the heatmap an example image, the result of `scipy.ndimage.measurements.label()` and the bounding boxes:
-
-![alt text][image9]
 
 ---
 
